@@ -48,7 +48,19 @@ Agna bridges the gap between text-based markdown files and visual workspace mana
 
 ---
 
-## Getting Started
+## Installation Guide
+
+### For Users (Installing the Standalone App)
+If you want to install and use the Agna desktop app without setting up a developer environment:
+1. Go to the [GitHub Releases](https://github.com/RajX-dev/Agna/releases) page.
+2. Download the latest installer executable (e.g., `Agna Setup 0.1.0.exe`).
+3. Double-click the downloaded `.exe` file to launch the installation wizard.
+4. Follow the setup prompts to choose your preferences and installation directory.
+5. The setup will create a desktop shortcut and a Start Menu entry. Launch **Agna** and start writing your notes!
+
+---
+
+## Developer Setup (Running from Source)
 
 ### Prerequisites
 * [Node.js](https://nodejs.org/) (v18 or higher recommended)
