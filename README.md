@@ -51,12 +51,14 @@ Agna bridges the gap between text-based markdown files and visual workspace mana
 ## Installation Guide
 
 ### For Users (Installing the Standalone App)
-If you want to install and use the Agna desktop app without setting up a developer environment:
-1. Go to the [GitHub Releases](https://github.com/RajX-dev/Agna/releases) page.
-2. Download the latest installer executable (e.g., `Agna Setup 0.1.0.exe`).
-3. Double-click the downloaded `.exe` file to launch the installation wizard.
+If you want to run the standalone desktop app:
+1. Currently, as a release is not yet published on GitHub, the installer can be built locally. Follow the **Developer Setup** below and run `npm run package`.
+2. Navigate to the `dist-electron/` folder and locate `Agna Setup 0.1.0.exe`.
+3. Double-click the `.exe` file to launch the installation wizard.
 4. Follow the setup prompts to choose your preferences and installation directory.
 5. The setup will create a desktop shortcut and a Start Menu entry. Launch **Agna** and start writing your notes!
+
+*(Note: Once a public version is published, users will be able to download the installer directly from the [GitHub Releases](https://github.com/RajX-dev/Agna/releases) page.)*
 
 ---
 
@@ -91,6 +93,41 @@ npm run package
 ```
 The distributable installer will be created inside the `dist-electron/` directory:
 * `dist-electron/Agna Setup 0.1.0.exe`
+
+### Releasing to GitHub
+
+#### Option 1: Manual Release (Easiest)
+1. Build the production installer locally:
+   ```bash
+   npm run package
+   ```
+2. Navigate to your GitHub Repository: `https://github.com/RajX-dev/Agna`.
+3. In the right-hand sidebar, click on **Releases** (or visit `https://github.com/RajX-dev/Agna/releases`) and click **Draft a new release**.
+4. Create a tag matching the version in `package.json` (e.g., `v0.1.0`), set the release title, and write a release description.
+5. Drag and drop the generated installer executable (`dist-electron/Agna Setup 0.1.0.exe`) into the binaries attachment box.
+6. Click **Publish release**.
+
+#### Option 2: Automated Publish with `electron-builder`
+You can publish releases directly from your command line using `electron-builder`:
+1. Add the GitHub publisher configuration to your `package.json` under the `"build"` block:
+   ```json
+   "publish": {
+     "provider": "github",
+     "owner": "RajX-dev",
+     "repo": "Agna"
+   }
+   ```
+2. Generate a [GitHub Personal Access Token (classic)](https://github.com/settings/tokens) with `repo` scope permissions.
+3. Run the publishing command in your terminal, passing the token:
+   - **PowerShell (Windows)**:
+     ```powershell
+     $env:GH_TOKEN="your_personal_access_token"
+     npx electron-builder --publish always
+     ```
+   - **Bash (Git Bash/Linux/macOS)**:
+     ```bash
+     GH_TOKEN="your_personal_access_token" npx electron-builder --publish always
+     ```
 
 ---
 
